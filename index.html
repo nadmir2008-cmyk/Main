@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📋 Мой рабочий журнал</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #ec4899;
+      --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --border-radius: 16px;
+      --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15);
+      --shadow-hover: 0 20px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 40px 32px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .header .subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    .dates-section {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 20px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    .dates-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .date-badge {
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      border: 1px solid #bae6fd;
+      color: #0369a1;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .date-badge:hover {
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      transform: scale(1.03);
+    }
+
+    .date-badge::before {
+      content: '📅';
+    }
+
+    .link-section {
+      margin-top: 20px;
+    }
+
+    .download-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      text-decoration: none;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .download-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+    }
+
+    .download-link:hover::before {
+      left: 100%;
+    }
+
+    .download-link::after {
+      content: '📊';
+      font-size: 1.2rem;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid #f1f5f9;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    .footer span {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* Анимация пульсации для акцента */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .accent {
+      animation: pulse 2s infinite;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 480px) {
+      .card {
+        padding: 32px 24px;
+      }
+      
+      .header h1 {
+        font-size: 1.75rem;
+      }
+      
+      .download-link {
+        padding: 14px 20px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <header class="header">
+        <h1>✨ Привет, мир!</h1>
+        <p class="subtitle">Рабочий журнал • Медицинский мониторинг</p>
+      </header>
+
+      <section class="dates-section">
+        <div class="section-title">Отмеченные даты</div>
+        <div class="dates-list">
+          <span class="date-badge">20 мая 2026</span>
+          <span class="date-badge">4 мая 2026</span>
+          <span class="date-badge">16 апреля 2026</span>
+        </div>
+      </section>
+
+      <section class="link-section">
+        <a href="текстовый таблица 1.xlsx" class="download-link" download>
+          Nf, лента — скачать данные
+        </a>
+      </section>
+
+      <footer class="footer">
+        Создано с <span>❤️</span> • Версия 1.1 • 2026
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Плавное появление элементов при загрузке
+    document.addEventListener('DOMContentLoaded', () => {
+      const badges = document.querySelectorAll('.date-badge');
+      badges.forEach((badge, index) => {
+        badge.style.animation = `slideUp 0.5s ease-out ${index * 0.1}s both`;
+      });
+    });
+
+    // Эффект нажатия на кнопку
+    document.querySelector('.download-link').addEventListener('mousedown', function() {
+      this.style.transform = 'scale(0.98)';
+    });
+    document.querySelector('.download-link').addEventListener('mouseup', function() {
+      this.style.transform = '';
+    });
+  </script>
+</body>
+</html>
